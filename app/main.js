@@ -1,0 +1,15 @@
+import {Provider} from 'react-redux'
+import React from 'react'
+import {render} from 'react-dom'
+import {BrowserRouter } from 'react-router-dom'
+import store from './store'
+import Root from './components/root'
+
+render(
+  <Provider store={store}>
+    <BrowserRouter>
+    <Root />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('main')
+)
