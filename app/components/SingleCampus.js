@@ -28,6 +28,7 @@ export class SingleCampus extends Component {
     }
 
     render() {
+        console.log('Single Campus props', this.props)
         let singleCampusObj, studentArray ;
         if(this.props.singleCampus){
             singleCampusObj = this.props.singleCampus

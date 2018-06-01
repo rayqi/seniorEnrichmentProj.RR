@@ -1,6 +1,5 @@
 import axios from 'axios'
 import store from '../store'
-import { browserHistory } from 'react-router'
 
 
 // `combineReducers` is not currently used, but eventually should be for modular code :D
@@ -65,7 +64,6 @@ export const getAllCampusesThunk = () => dispatch => {
         .catch(err => console.error('fetching campuses unsuccessful', err))
 }
 
-
 //action creator uses dispatch to go to the reducer 
 
 export const getSingleCampusThunk = (campusId) => dispatch => {
@@ -74,7 +72,7 @@ export const getSingleCampusThunk = (campusId) => dispatch => {
         .catch(err => console.error('fetch single campus not working', err))
 }
 
-export const addCampusThunk = (campusObj, history) => dispatch => {
+export const addCampusThunk = (campusObj) => dispatch => {
     axios.post('/api/campuses', campusObj)
         .then(res => res.data)
         .then(newCampus => dispatch(addCampus(newCampus)))
@@ -113,7 +111,5 @@ export const CampusReducer = (state = initialState, action) => {
             return state
     }
 }
-
-
 
 export default CampusReducer;

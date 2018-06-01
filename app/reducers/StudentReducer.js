@@ -3,12 +3,16 @@ import store from '../store'
 
 const initialState = {
     allStudents: [],
-    singleStudent: {}
+    singleStudent: {},
+    newStudent: {}
 }
 //ACTION TYPES
 const GET_ALL_STUDENTS = "GET_ALL_STUDENTS";
 const GET_SINGLE_STUDENT = "GET_SINGLE_STUDENT";
 const ADD_STUDENT = "ADD_STUDENT"
+const EDIT_STUDENT = "EDIT_STUDENT";
+const DELETE_STUDENT = "DELETE_STUDENT"
+
 
 //ACTION CREATORS
 export const getAllStudents = function (students) {
@@ -32,15 +36,54 @@ export const addStudent = function (student) {
     }
 }
 
-//THUNKS
-export function getAllStudentsThunk() {
-    return axios.get('/api/students')
-        .then(res => res.data)
+export const editStudent = function (student) {
+    return {
+        type: EDIT_STUDENT,
+        payload: student
+    }
 }
 
-export function getSingleStudentThunk(studentId) {
-    return axios.get(`/api/students/${studentId}`)
+export const deleteStudent = function (student) {
+    return {
+        type: DELETE_STUDENT,
+        payload: student
+    }
+}
+
+//THUNKS
+// export function getAllStudentsThunk() {
+//     return axios.get('/api/students')
+//         .then(res => res.data)
+// }
+
+export const getAllStudentsThunk = () => dispatch => {
+    axios.get('/api/students')
+        .then(res =>
+            dispatch(getAllStudents(res.data)))
+        .catch(err => console.error('fetching students unsuccessful', err))
+}
+
+export const getSingleStudentThunk = (studentId) => dispatch => {
+    axios.get(`/api/students/${studentId}`)
+        .then(res => dispatch(getSingleStudent(res.data)))
+        .catch(err => console.error('fetch single student', err))
+}
+
+export const addNewStudentThunk = (studentObj) => dispatch => {
+    axios.post('/api/students', studentObj)
         .then(res => res.data)
+        .then(newStudent => dispatch(addStudent(newStudent)))
+        .catch(err => console.error('add new student', err))
+}
+
+export const deleteStudentThunk = (studentId) => dispatch => {
+    axios.delete(`/api/students/${studentId}`)
+        .then(res => dispatch(deleteStudent(res.data)))
+}
+
+export const editStudentThunk = (studentId, student) => dispatch => {
+    axios.put(`/api/students/${studentId}`, student)
+        .then(res => dispatch(editStudent(res.data)))
 }
 
 export const StudentReducer = (state = initialState, action) => {
@@ -51,6 +94,10 @@ export const StudentReducer = (state = initialState, action) => {
             return Object.assign({}, state, { singleStudent: action.payload })
         case ADD_STUDENT:
             return Object.assign({}, state, { allStudents: state.allStudents.concat(action.payload) })
+        case EDIT_STUDENT:
+            return Object.assign({},state, { singleStudent: action.payload})
+        case DELETE_STUDENT:
+            return Object.assign({}, state, {})
         default:
             return state
     }

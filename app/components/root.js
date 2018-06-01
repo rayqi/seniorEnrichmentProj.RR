@@ -4,7 +4,7 @@ import AllCampuses from './AllCampuses'
 import AddCampus from './AddCampus'
 import store from '../store'
 import SingleCampus from './SingleCampus'
-// import AddStudent from './AddStudent'
+import AddStudent from './AddStudent'
 import AllStudents from './AllStudents'
 import SingleStudent from './SingleStudent'
 
@@ -29,7 +29,7 @@ export default class Root extends Component {
         <Route path="/allcampuses" component={AllCampuses}/>
         <Route path="/allstudents" component={AllStudents}/>
         <Route path="/add-campus" component={AddCampus} />
-        {/* <Route path="/add-student" component={AddStudent} /> */}
+        <Route path="/add-student" component={AddStudent} />
         <Route path="/campus/:id" component={SingleCampus} />
         <Route path="/student/:id" component={SingleStudent} />
       </div>

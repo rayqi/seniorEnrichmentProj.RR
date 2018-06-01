@@ -33,7 +33,7 @@ export class AddCampus extends Component {
                 <form action="/" onSubmit={this.handleSubmit}>
                     <div>
                         <label>CAMPUS NAME: </label>
-                        <input type='text' name='name'  onChange={this.handleChange}/>
+                        <input type='text' name='name' onChange={this.handleChange} />
                     </div>
                     <div>
                         <label>CAMPUS IMAGEURL: </label>
@@ -41,7 +41,7 @@ export class AddCampus extends Component {
                     </div>
                     <div>
                         <label>CAMPUS DESCRIPTION: </label>
-                        <input type='text' name='description' onChange={this.handleChange}/>
+                        <input type='text' name='description' onChange={this.handleChange} />
                     </div>
                     <button type='submit'>SUBMIT</button>
                 </form>
@@ -50,7 +50,7 @@ export class AddCampus extends Component {
     }
 }
 
-export const mapStateToProps = function(state){
+export const mapStateToProps = function (state) {
     console.log('ADD_CAMPUS, mapStatetoProps', state)
     return {
         newCampus: state.campus.newCampus
@@ -60,8 +60,9 @@ export const mapDispatchToProps = function (dispatch) {
     console.log('mapDispatchToProps, did this hit?')
     return {
         addCampus: (campus) => {
-        dispatch(addCampusThunk(campus))}  
+            dispatch(addCampusThunk(campus))
+        }
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(AddCampus)
+export default connect(mapStateToProps, mapDispatchToProps)(AddCampus)
