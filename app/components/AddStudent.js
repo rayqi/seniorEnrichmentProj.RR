@@ -72,10 +72,11 @@ export const mapStateToProps = (state) => {
     }
 }
 
-export const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch, ownProps) => {
+    console.log('ownProps', ownProps)
     return {
         addNewStudentKey: (student) => {
-            dispatch(addNewStudentThunk(student))
+            dispatch(addNewStudentThunk(student,ownProps.history))
         }
     }
 }

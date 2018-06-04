@@ -72,10 +72,12 @@ export const getSingleCampusThunk = (campusId) => dispatch => {
         .catch(err => console.error('fetch single campus not working', err))
 }
 
-export const addCampusThunk = (campusObj) => dispatch => {
+export const addCampusThunk = (campusObj, history) => dispatch => {
     axios.post('/api/campuses', campusObj)
         .then(res => res.data)
-        .then(newCampus => dispatch(addCampus(newCampus)))
+        .then(newCampus => {dispatch(addCampus(newCampus));
+        history.push(`campus/${newCampus.id}`)
+        })
         .catch(err => console.error('error adding campus', err))
 }
 

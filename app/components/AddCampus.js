@@ -56,11 +56,11 @@ export const mapStateToProps = function (state) {
         newCampus: state.campus.newCampus
     }
 }
-export const mapDispatchToProps = function (dispatch) {
+export const mapDispatchToProps = function (dispatch, ownProps) {
     console.log('mapDispatchToProps, did this hit?')
     return {
         addCampus: (campus) => {
-            dispatch(addCampusThunk(campus))
+            dispatch(addCampusThunk(campus, ownProps.history))
         }
     }
 }

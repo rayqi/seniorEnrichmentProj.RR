@@ -31,7 +31,7 @@ export class EditCampus extends Component {
         event.preventDefault()
         const newCampus = this.state
         const campusId = this.props.id.singleCampus.id
-        console.log('newCampus', newCampus)
+        console.log('newCampus handleSubmit', newCampus)
         this.props.editCampus(campusId, newCampus)
         // this.props.history.push(`/campuses/${campusId}`)
     }
@@ -61,11 +61,13 @@ export class EditCampus extends Component {
 }
 
 export const mapStateToProps = function (state) {
+    console.log('mapstatetoprops', state)
     return {
         singleCampus: state.campus.newCampus
     }
 }
 export const mapDispatchToProps = function (dispatch) {
+    console.log('mapdispatchtoprops', dispatch)
     return {
         editCampus: (campusId, campus) => {
             dispatch(editCampusThunk(campusId, campus))

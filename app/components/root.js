@@ -26,6 +26,8 @@ export default class Root extends Component {
           <ul><Link to="/allcampuses">All Campuses</Link></ul>
           <ul><Link to="/allstudents">All Students</Link></ul>
         </nav>
+        <h1>Welcome to Be Kind University</h1>
+        <img src="http://i0.kym-cdn.com/entries/icons/original/000/005/896/Magic-School-Bus.jpg"/>
         <Route path="/allcampuses" component={AllCampuses}/>
         <Route path="/allstudents" component={AllStudents}/>
         <Route path="/add-campus" component={AddCampus} />

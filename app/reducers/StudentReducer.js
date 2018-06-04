@@ -69,11 +69,13 @@ export const getSingleStudentThunk = (studentId) => dispatch => {
         .catch(err => console.error('fetch single student', err))
 }
 
-export const addNewStudentThunk = (studentObj) => dispatch => {
+export const addNewStudentThunk = (studentObj,history) => dispatch => {
     axios.post('/api/students', studentObj)
         .then(res => res.data)
-        .then(newStudent => dispatch(addStudent(newStudent)))
-        .catch(err => console.error('add new student', err))
+        .then(newStudent => {dispatch(addStudent(newStudent));
+        history.push(`student/${newStudent.id}`);
+    })
+    .catch(err => console.error('fetch single student', err))
 }
 
 export const deleteStudentThunk = (studentId) => dispatch => {

@@ -1,12 +1,28 @@
 * {
   font-family: arial, sans-serif;
-  padding: 0;
+  padding: 10;
   margin: 0;
   box-sizing: border-box;
 }
 
-nav {
-  display: inline-block;
+/* nav {
+  display: flex;
   padding: 10px;
   background-color: lightblue;
+  flex-direction: row
+} */
+
+nav {
+  align-self: right;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  background-color: lightblue;
 }
+
+body{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
